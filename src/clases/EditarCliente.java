@@ -75,7 +75,7 @@ public class EditarCliente extends JFrame {
 	private GestionarClientes ventanaGestionarClientes;
 	private EditarDispositivo informacionDispositivo;
 	private ArrayList<Integer> actualz = new ArrayList<Integer>();
-	private HashMap<Integer, EditarDispositivo> pruebas = new HashMap<Integer, EditarDispositivo>();
+	private HashMap<Integer, EditarDispositivo> listaEditarDispositivosId = new HashMap<Integer, EditarDispositivo>();
 	private JTable jTableEquipos= new JTable(){
 		public boolean isCellEditable(int rowIndex, int colIndex) {
 			return false; 
@@ -128,7 +128,7 @@ public class EditarCliente extends JFrame {
 							          }
 					          }
 					          
-					          Limpiar();
+					          limpiar();
 					          ventanaGestionarClientes.actualizar();
 					          ventanaGestionarClientes.quitar(ID_0);
 					          dispose();     
@@ -237,7 +237,7 @@ public class EditarCliente extends JFrame {
 		contentPane.add(txt_direccion);
 		
 		txt_cedula = new JTextField();
-		txt_cedula.setEnabled(false);
+		txt_cedula.setEnabled(true);
 		txt_cedula.setEditable(false);
 		txt_cedula.setHorizontalAlignment(SwingConstants.CENTER);
 		txt_cedula.setForeground(Color.WHITE);
@@ -270,7 +270,6 @@ public class EditarCliente extends JFrame {
 				email = txt_email.getText().trim();
 				telefono = txt_telefono.getText().trim();
 				direccion = txt_direccion.getText().trim();
-				String cedula="";
 				if (nombre.equals("")||email.equals("")||direccion.equals("")||
 						telefono.equals("")){
 					JOptionPane.showMessageDialog(null, "No se pueden dejar campos vacios");
@@ -278,17 +277,16 @@ public class EditarCliente extends JFrame {
 					try {	
 					Connection cn =  Conexion.conectar();
 					PreparedStatement pst = cn.prepareStatement(
-							"UPDATE Cliente SET nombre=?, direccion=?, email=?, telefono=?, cedula=? WHERE idCliente = ?");
+							"UPDATE Cliente SET nombre=?, direccion=?, email=?, telefono=? WHERE idCliente = ?");
 							  pst.setString(1, nombre);
 							  pst.setString(2, direccion);
 							  pst.setString(3, email);
 							  pst.setString(4, telefono);
-							  pst.setString(5, cedula);
-							  pst.setInt(6, ID_0);					  
+							  pst.setInt(5, ID_0);					  
 					          pst.executeUpdate();
 					          cn.close();
 					          JOptionPane.showMessageDialog(null, "Modificacion exitosa");
-					          Limpiar();
+					          limpiar();
 					          ventanaGestionarClientes.actualizar();
 					          ventanaGestionarClientes.quitar(ID_0);
 					          dispose();     
@@ -361,11 +359,11 @@ public class EditarCliente extends JFrame {
 					if((!actualz.contains(IDequipo)))	{
 						informacionDispositivo = new EditarDispositivo(ID_0,IDequipo,ventanaEditarCliente);  ////////////
 						informacionDispositivo.setVisible(true);
-						pruebas.put(IDequipo,informacionDispositivo);
+						listaEditarDispositivosId.put(IDequipo,informacionDispositivo);
 					}
 				else	{
 					EditarDispositivo informacion_Equipo2;
-					informacion_Equipo2 = pruebas.get(IDequipo);
+					informacion_Equipo2 = listaEditarDispositivosId.get(IDequipo);
 					informacion_Equipo2.setVisible(true);
 					informacion_Equipo2.toFront();
 					informacion_Equipo2.requestFocus();}}}
@@ -376,7 +374,7 @@ public class EditarCliente extends JFrame {
 	}public void quitar(int dato){
 		  for (int i = 0; i < actualz.size(); i++) {
 				if(actualz.get(i)== dato) {	
-					actualz.remove(i);pruebas.remove(dato);}}
+					actualz.remove(i);listaEditarDispositivosId.remove(dato);}}
 		  }	
 	public void actualizar()
 	{
@@ -422,7 +420,7 @@ public class EditarCliente extends JFrame {
 		}
 	}
 	
-	public void Limpiar()
+	public void limpiar()
 	{
 		txt_direccion.setText("");
 		txt_email.setText("");

@@ -48,20 +48,20 @@ public class EditarDispositivo extends JFrame {
 	private JTextField txt_color;
 	private JTextPane txtp_dañoobservaciones;
 	private JComboBox cmb_estatus;
-	private JComboBox cmb_estado;
+//	private JComboBox cmb_estado;
 	private JLabel lblDaoReportadoY = new JLabel();
-	private JLabel lblComentarioYActualizacion = new JLabel();
+	private JLabel lblComentarioActualizacion = new JLabel();
 	private int IDCliente_Update=0, IDequipo=0;
 	private String user="",nom_cliente="";
-	private EditarCliente IC;
+	private EditarCliente ventanaEditarCliente;
 	private JTextField textField;
 	
 	public EditarDispositivo(int ID_cliente, int ID_equipotro, EditarCliente ic) {
-		IC=ic;
-		IC.anadir(ID_equipotro);
+		ventanaEditarCliente=ic;
+		ventanaEditarCliente.anadir(ID_equipotro);
 		this.addWindowListener( new WindowAdapter(){
 			   public void windowClosing(WindowEvent e) {
-					IC.quitar(ID_equipotro);}
+					ventanaEditarCliente.quitar(ID_equipotro);}
 		  });
 		IDequipo= ID_equipotro;
 		IDCliente_Update = ID_cliente;
@@ -196,10 +196,10 @@ public class EditarDispositivo extends JFrame {
 					          JOptionPane.showMessageDialog(null, "Modificacion exitosa");
 					         int valor= Integer.valueOf(JOptionPane.showInputDialog("escribe el valor de la reparacion"));
 					         Principal.valor[0]=Principal.valor[0]+valor;
-					          Limpiar();
+					          limpiar();
 					          actualizar();
-					          IC.actualizar();
-					          IC.quitar(IDequipo);
+					          ventanaEditarCliente.actualizar();
+					          ventanaEditarCliente.quitar(IDequipo);
 					          dispose();     
 					          System.out.println(Principal.valor[0]);
 					}
@@ -290,10 +290,10 @@ public class EditarDispositivo extends JFrame {
 					          pst.executeUpdate();
 					          cn.close();
 					          JOptionPane.showMessageDialog(null, "Modificacion exitosa");
-					          Limpiar();
+					          limpiar();
 					          actualizar();
-					          IC.actualizar();
-					          IC.quitar(IDequipo);
+					          ventanaEditarCliente.actualizar();
+					          ventanaEditarCliente.quitar(IDequipo);
 					          dispose();     
 					}
 					catch(SQLException e0)
@@ -346,7 +346,7 @@ public class EditarDispositivo extends JFrame {
 		}
 	}
 	
-	public void Limpiar()
+	public void limpiar()
 	{
 		txt_modelo.setText("");
 		txt_nombre.setText("");

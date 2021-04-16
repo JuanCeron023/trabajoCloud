@@ -30,24 +30,24 @@ public class Principal extends JFrame {
 
 	private JPanel contentPane;
 	public static int[] valor={0};
-	private GestionarClientes gc;
-	private Grafica gr;
+	private GestionarClientes gC;
+	private Grafica gR;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Principal frame = new Principal();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Principal frame = new Principal();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
@@ -72,8 +72,8 @@ public class Principal extends JFrame {
 			jButton_VerGrafica.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {			
 					if(Grafica.actualizar==0){
-						gr  = new Grafica();
-						gr.h();
+						gR  = new Grafica();
+						gR.crear();
 						}
 				}
 			});
@@ -85,13 +85,13 @@ public class Principal extends JFrame {
 			jButton_GestionarUsuarios.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {				
 						if((GestionarClientes.actualizar==0)){
-					   gc= new GestionarClientes(); ////////////////////////////////////////////////////////////////////////
-					   gc.setVisible(true); ////////////////////////////////////////////////////////////////////////
+					   gC= new GestionarClientes(); ////////////////////////////////////////////////////////////////////////
+					   gC.setVisible(true); ////////////////////////////////////////////////////////////////////////
 						}
 				else{
-					gc.setVisible(true); ////////////////////////////////////////////////////////////////////////
-					gc.toFront(); ////////////////////////////////////////////////////////////////////////
-					gc.requestFocus(); ////////////////////////////////////////////////////////////////////////
+					gC.setVisible(true); ////////////////////////////////////////////////////////////////////////
+					gC.toFront(); ////////////////////////////////////////////////////////////////////////
+					gC.requestFocus(); ////////////////////////////////////////////////////////////////////////
 					}
 				}
 			});

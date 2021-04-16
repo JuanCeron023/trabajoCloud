@@ -42,18 +42,18 @@ public class RegistarDispositivo extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					RegistarDispositivo frame = new RegistarDispositivo(new EditarCliente(0, new GestionarClientes()),0);
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					RegistarDispositivo frame = new RegistarDispositivo(new EditarCliente(0, new GestionarClientes()),0);
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	private JPanel contentPane;
 	private JTextField txt_nombre;
@@ -63,8 +63,10 @@ public class RegistarDispositivo extends JFrame {
 	private String user="",nom_cliente="";
 	public static int actualizar;
 	private JTextField textField;
-	public RegistarDispositivo(EditarCliente gu, int IDcliente) {	
+	private EditarCliente editarCliente;
+	public RegistarDispositivo(EditarCliente editaCliente, int IDcliente) {	
 		actualizar++;
+		editarCliente = editaCliente;
 		this.addWindowListener( new WindowAdapter()
 		 {
 			   public void windowClosing(WindowEvent e)
@@ -223,7 +225,7 @@ public class RegistarDispositivo extends JFrame {
 			          pst1.executeUpdate();
 			          cn1.close();
 			          JOptionPane.showMessageDialog(null, "registro exitoso");
-			          gu.actualizar();
+			          editarCliente.actualizar();
 			          dispose();				
 					}				
 				catch (SQLException e1) {

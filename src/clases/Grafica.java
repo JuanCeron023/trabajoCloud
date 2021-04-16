@@ -106,7 +106,7 @@ public static int actualizar=0;
             return (scene);
      }
     
-    public void h(){
+    public void crear(){
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

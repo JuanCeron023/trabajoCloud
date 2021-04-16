@@ -184,7 +184,7 @@ public class RegistrarCliente extends JFrame {
 											  pst1.setString(5, telefono);
 											  pst1.setString(6, cedula);
 									          pst1.executeUpdate();
-											  Limpiar(); 
+											  limpiar(); 
 									          cn1.close();
 									          JOptionPane.showMessageDialog(null, "registro exitoso");
 									          ventanaRegistrarCliente.dispatchEvent(new WindowEvent(ventanaRegistrarCliente, WindowEvent.WINDOW_CLOSING));
@@ -228,7 +228,7 @@ public class RegistrarCliente extends JFrame {
 		jLabel_Wallpaper.setIcon(icono);
 		this.repaint();
 	}
-	public void Limpiar()
+	public void limpiar()
 	{
 		txt_direccion.setText("");
 		txt_email.setText("");

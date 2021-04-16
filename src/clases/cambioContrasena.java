@@ -37,10 +37,10 @@ public class cambioContrasena extends JFrame {
 	private JPasswordField txt_PasswordConfirmar;
 	private int id;
 	private JPasswordField txt_passwordC;
-	private int ID_=0;
+	private int ID_temp=0;
 
 	public cambioContrasena(int id0) {
-		ID_=id0;
+		ID_temp=id0;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 360, 260);
@@ -82,7 +82,7 @@ public class cambioContrasena extends JFrame {
 				
 				try {		
 					Connection cn = Conexion.conectar();
-					id= ID_;
+					id= ID_temp;
 					PreparedStatement pst = cn.prepareStatement("SELECT usuario from usuario where idUsuario = ? AND contrasena = ?");
 					pst.setInt(1, id);
 					pst.setString(2, contrasena);

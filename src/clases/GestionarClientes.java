@@ -40,18 +40,18 @@ public class GestionarClientes extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					GestionarClientes frame = new GestionarClientes();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					GestionarClientes frame = new GestionarClientes();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	private JPanel contentPane;
 	public static int ID_ClienteUpdate;
@@ -61,7 +61,7 @@ public class GestionarClientes extends JFrame {
 	private RegistrarCliente registrarCliente; 
 	private EditarCliente editarcliente; ///ventana de informacion
 	private ArrayList<Integer> actualz = new ArrayList<Integer>();  /////lista de los id de los clientes para abrir varias ventanas
-	private HashMap<Integer, EditarCliente> pruebas = new HashMap<Integer, EditarCliente>(); /////guarda la ventana de un   cliente para no crear otra si ya existe
+	private HashMap<Integer, EditarCliente> listaClientesVentanaID = new HashMap<Integer, EditarCliente>(); /////guarda la ventana de un   cliente para no crear otra si ya existe
 	private JTable jTable_Clientes = new JTable(){
 		public boolean isCellEditable(int rowIndex, int colIndex) {
 			return false;}};
@@ -144,11 +144,11 @@ public class GestionarClientes extends JFrame {
 			if((!actualz.contains(ID_ClienteUpdate)))	{
 				editarcliente= new EditarCliente(ID_ClienteUpdate,estaVentana);
 				editarcliente.setVisible(true);
-				pruebas.put(ID_ClienteUpdate,editarcliente);
+				listaClientesVentanaID.put(ID_ClienteUpdate,editarcliente);
 			}
 		else	{
 			EditarCliente informacion_cliente2;
-			informacion_cliente2 = pruebas.get(ID_ClienteUpdate);
+			informacion_cliente2 = listaClientesVentanaID.get(ID_ClienteUpdate);
 			informacion_cliente2.setVisible(true);
 			informacion_cliente2.toFront();
 			informacion_cliente2.requestFocus();}}
@@ -160,7 +160,7 @@ public class GestionarClientes extends JFrame {
 	}public void quitar(int dato){
 		  for (int i = 0; i < actualz.size(); i++) {
 				if(actualz.get(i)== dato) {	
-					actualz.remove(i);pruebas.remove(dato);}}
+					actualz.remove(i);listaClientesVentanaID.remove(dato);}}
 		  }	
 	
 	
